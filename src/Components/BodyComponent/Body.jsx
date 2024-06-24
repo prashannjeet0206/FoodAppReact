@@ -1,6 +1,7 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Restaraunt from "./Restaraunt";
 import { restaurantList } from "../Constants/Constant";
+import ShimmerUI from "./ShimmerUI";
 
 const BodyComponent = () => {
   const [restaurant, setRestaurant] = useState(restaurantList);
@@ -12,12 +13,30 @@ const BodyComponent = () => {
 
   function updateSearch(searchText, restaurant) {
     const filterData = restaurant.filter((rest) =>
-      rest.info.name.includes(searchText)
+      rest.info.name.toLowerCase().includes(searchText)
     );
     return setRestaurant(filterData);
   }
 
-  return (
+  // async function getApi() {
+  //   const data = await fetch(
+  //     "https://www.swiggy.com/mapi/homepage/getCards?lat=23.1373176&lng=79.9178709"
+  //   );
+
+  //   const json = await data.json();
+  //   console.log(json);
+  //   setRestaurant(
+  //     json?.data?.cards[3]?.gridElements?.infoWIthStyle?.restaurants
+  //   );
+  // }
+  // // getApi();
+  // useEffect(() => {
+  //   getApi();
+  // }, []);
+
+  return restaurant.length === 0 ? (
+    <ShimmerUI />
+  ) : (
     <>
       <div className="search">
         <input
