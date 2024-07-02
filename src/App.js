@@ -1,4 +1,4 @@
-import React from "react";
+import React, { lazy, Suspense } from "react";
 import ReactDom from "react-dom/client";
 import HeaderComponent from "./Components/HeaderComponent/Header";
 import BodyComponent from "./Components/BodyComponent/Body";
@@ -9,6 +9,7 @@ import Footer from "./Components/Footer/Footer";
 import Contact from "./Components/BodyComponent/Contact";
 import Menu from "./Components/BodyComponent/RestaurantMenu";
 import Profile from "./Components/BodyComponent/Profile";
+// import InstaMart from "./Components/BodyComponent/IntaMart";
 
 const AppLayout = () => {
   return (
@@ -19,6 +20,9 @@ const AppLayout = () => {
     </div>
   );
 };
+
+// Lazy Loading
+const InstaMart = lazy(() => import("./Components/BodyComponent/IntaMart"));
 
 const router = createBrowserRouter([
   {
@@ -45,8 +49,12 @@ const router = createBrowserRouter([
         element: <Contact />,
       },
       {
-        path: "/menu/:id",
-        element: <Menu />,
+        path: "/mart",
+        element: (
+          <Suspense>
+            <InstaMart />
+          </Suspense>
+        ),
       },
     ],
   },

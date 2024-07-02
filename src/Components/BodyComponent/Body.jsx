@@ -14,7 +14,7 @@ const BodyComponent = () => {
 
   function updateSearch(searchText, restaurant) {
     const filterData = restaurant.filter((rest) =>
-      rest.info.name.toLowerCase().includes(searchText)
+      rest.info.name.toLowerCase().includes(searchText.toLowerCase())
     );
     return setRestaurant(filterData);
   }

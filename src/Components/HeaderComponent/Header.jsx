@@ -21,6 +21,9 @@ const HeaderComponent = () => {
             <li>Contact</li>
           </Link>
           <li>Kart</li>
+          <Link to="/mart">
+            <li>InstaMart</li>
+          </Link>
         </ul>
       </nav>
     </div>
