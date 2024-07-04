@@ -10,14 +10,18 @@ import Contact from "./Components/BodyComponent/Contact";
 import Menu from "./Components/BodyComponent/RestaurantMenu";
 import Profile from "./Components/BodyComponent/Profile";
 // import InstaMart from "./Components/BodyComponent/IntaMart";
+import { Provider } from "react-redux";
+import store from "./Components/Utils/store";
 
 const AppLayout = () => {
   return (
-    <div>
-      <HeaderComponent />
-      <Outlet />
-      <Footer />
-    </div>
+    <Provider store={store}>
+      <div>
+        <HeaderComponent />
+        <Outlet />
+        <Footer />
+      </div>
+    </Provider>
   );
 };
 

@@ -1,7 +1,15 @@
 import React from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
+import store from "../Utils/store";
+import { addItems } from "../Utils/cartSlice";
 
 const HeaderComponent = () => {
+  const cartSlice = useSelector((store) => store.cart.items);
+  const dispatch = useDispatch();
+  function handleClick() {
+    dispatch(addItems("chickoo"));
+  }
   return (
     <div className="header">
       <img
@@ -20,10 +28,11 @@ const HeaderComponent = () => {
           <Link to="/contact">
             <li>Contact</li>
           </Link>
-          <li>Kart</li>
+          <li>Kart{cartSlice.length}</li>
           <Link to="/mart">
             <li>InstaMart</li>
           </Link>
+          <button onClick={handleClick}>Add</button>
         </ul>
       </nav>
     </div>
